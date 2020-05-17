@@ -1,0 +1,18 @@
+
+def get_file_data():
+    with open('recipes.txt', 'r' , encoding='utf-8') as fi:
+        data = fi.read()
+    return data
+
+
+def create_dictionaty():
+    recipes_dict = {}
+    for data in get_file_data().split('\n\n'):
+        dish_name = data.split('\n')
+        recipes_dict[dish_name[0]] = []
+        for items in dish_name[2:]:
+            ingridients_list = items.split(' | ')
+            recipes_dict[dish_name[0]].append({'ingredient_name' : ingridients_list[0] , 'quantity' : ingridients_list[1] , 'measure' : ingridients_list[2]})
+    print(recipes_dict)
+
+create_dictionaty()
